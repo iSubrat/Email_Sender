@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 # Retrieve secrets from GitHub Secrets
-smtp_host = 'smtp.hostinger.com'
+smtp_host = os.environ['SMTP_HOST']
 smtp_port = os.environ['SMTP_PORT']
 email_username = os.environ['EMAIL_USERNAME']
 email_password = os.environ['EMAIL_PASSWORD']
