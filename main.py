@@ -1,56 +1,47 @@
-# Importing the Required Modules
-import os
 import smtplib
+import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+# Retrieve secrets from GitHub Secrets
 smtp_host = os.environ['SMTP_HOST']
 smtp_port = os.environ['SMTP_PORT']
 email_username = os.environ['EMAIL_USERNAME']
 email_password = os.environ['EMAIL_PASSWORD']
 
-# Defining the send_email Function
-def send_email(sender_email, receiver_email, subject, message, smtp_server, smtp_port, smtp_username, smtp_password):
-    # Create a multipart message
-    msg = MIMEMultipart()
-    msg["From"] = sender_email
-    msg["To"] = receiver_email
-    msg["Subject"] = subject
+# Sender and recipient email addresses
+sender_email = email_username
+recipient_email = 'isubrat@icloud.com'
 
-    # Add body to the email
-    msg.attach(MIMEText(message, "plain"))
+# Create message
+message = MIMEMultipart("alternative")
+message["Subject"] = "Test Email from GitHub Actions"
+message["From"] = sender_email
+message["To"] = recipient_email
 
-    # try:
-    # Create a secure SSL/TLS connection to the SMTP server
-    server = smtplib.SMTP(smtp_server, smtp_port)
-    server.connect(smtp_server, smtp_port)
-    server.ehlo()
-    server.starttls()
-    server.ehlo()
+# Plain-text version of the email
+text = """\
+This is a test email sent from GitHub Actions."""
 
-    # Login to the SMTP server
-    server.login(smtp_username, smtp_password)
+# HTML version of the email
+html = """\
+<html>
+  <body>
+    <p>This is a test email sent from <b>GitHub Actions</b>.</p>
+  </body>
+</html>
+"""
 
-    # Send the email
-    server.sendmail(sender_email, receiver_email, msg.as_string())
+# Attach both plain-text and HTML versions
+part1 = MIMEText(text, "plain")
+part2 = MIMEText(html, "html")
+message.attach(part1)
+message.attach(part2)
 
-    # Close the SMTP connection
-    server.quit()
+# Connect to SMTP server and send email
+with smtplib.SMTP(smtp_host, smtp_port) as server:
+    server.starttls()  # Enable TLS encryption
+    server.login(email_username, email_password)
+    server.sendmail(sender_email, recipient_email, message.as_string())
 
-    print("Email sent successfully!")
-    # except Exception as e:
-    #     print("Failed to send email. Error:", str(e))
-
-# Creating all the parameters
-sender_email = "web2app@appcollection.in"
-receiver_email = "isubrat@icloud.com"
-subject = "Hello from Python!"
-message = "This is a test email sent from Python."
-
-smtp_server = smtp_host
-smtp_port = smtp_port
-smtp_username = email_username
-smtp_password = email_password
-
-# Call the function
-send_email(sender_email, receiver_email, subject, message, smtp_server, smtp_port, smtp_username, smtp_password)
+print("Email sent successfully!")
