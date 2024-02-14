@@ -38,14 +38,9 @@ part2 = MIMEText(html, "html")
 message.attach(part1)
 message.attach(part2)
 
-# Connect to SMTP server
-server = smtplib.SMTP(smtp_host, smtp_port)
-server.ehlo()  # Identify yourself to the SMTP server
-server.starttls()  # Enable TLS encryption
-server.login(email_username, email_password)
-
-# Send email
-server.sendmail(sender_email, recipient_email, message.as_string())
-server.quit()
+# Connect to SMTP server using SSL
+with smtplib.SMTP_SSL(smtp_host, smtp_port) as server:
+    server.login(email_username, email_password)
+    server.sendmail(sender_email, recipient_email, message.as_string())
 
 print("Email sent successfully!")
