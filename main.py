@@ -22,7 +22,7 @@ def send_email(sender_email, receiver_email, subject, message, smtp_server, smtp
 
     try:
         # Create a secure SSL/TLS connection to the SMTP server
-        server = smtplib.SMTP()
+        server = smtplib.SMTP(smtp_server, smtp_port)
         server.connect(smtp_server, smtp_port)
         server.ehlo()
         server.starttls()
