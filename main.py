@@ -1,5 +1,5 @@
-import smtplib
 import os
+import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -9,39 +9,31 @@ smtp_port = os.environ['SMTP_PORT']
 email_username = os.environ['EMAIL_USERNAME']
 email_password = os.environ['EMAIL_PASSWORD']
 
-# Sender and recipient email addresses
+def send_email(sender_email, sender_password, recipient_email, subject, message):
+    try:
+        # Setup the email message
+        email_message = MIMEMultipart()
+        email_message['From'] = sender_email
+        email_message['To'] = recipient_email
+        email_message['Subject'] = subject
+
+        # Attach the message body
+        email_message.attach(MIMEText(message, 'plain'))
+
+        # Create SMTP session for sending the mail
+        with smtplib.SMTP_SSL(smtp_host, smtp_port) as session:
+            session.login(sender_email, sender_password)
+            session.sendmail(sender_email, recipient_email, email_message.as_string())
+
+        print("Email sent successfully!")
+    except Exception as e:
+        print(f"Error: {e}")
+
+# Example usage
 sender_email = email_username
-recipient_email = 'recipient@example.com'
+sender_password = email_password
+recipient_email = 'isubrat@icloud.com'
+subject = 'Your Subject'
+message = 'Your Message'
 
-# Create message
-message = MIMEMultipart("alternative")
-message["Subject"] = "Test Email from GitHub Actions"
-message["From"] = sender_email
-message["To"] = recipient_email
-
-# Plain-text version of the email
-text = """\
-This is a test email sent from GitHub Actions."""
-
-# HTML version of the email
-html = """\
-<html>
-  <body>
-    <p>This is a test email sent from <b>GitHub Actions</b>.</p>
-  </body>
-</html>
-"""
-
-# Attach both plain-text and HTML versions
-part1 = MIMEText(text, "plain")
-part2 = MIMEText(html, "html")
-message.attach(part1)
-message.attach(part2)
-
-# Connect to SMTP server using SSL
-with smtplib.SMTP_SSL(smtp_host, smtp_port) as server:
-    server.connect(smtp_host, smtp_port)
-    server.login(email_username, email_password)
-    server.sendmail(sender_email, recipient_email, message.as_string())
-
-print("Email sent successfully!")
+send_email(sender_email, sender_password, recipient_email, subject, message)
