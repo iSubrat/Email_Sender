@@ -20,26 +20,26 @@ def send_email(sender_email, receiver_email, subject, message, smtp_server, smtp
     # Add body to the email
     msg.attach(MIMEText(message, "plain"))
 
-    try:
-        # Create a secure SSL/TLS connection to the SMTP server
-        server = smtplib.SMTP(smtp_server, smtp_port)
-        server.connect(smtp_server, smtp_port)
-        server.ehlo()
-        server.starttls()
-        server.ehlo()
+    # try:
+    # Create a secure SSL/TLS connection to the SMTP server
+    server = smtplib.SMTP(smtp_server, smtp_port)
+    server.connect(smtp_server, smtp_port)
+    server.ehlo()
+    server.starttls()
+    server.ehlo()
 
-        # Login to the SMTP server
-        server.login(smtp_username, smtp_password)
+    # Login to the SMTP server
+    server.login(smtp_username, smtp_password)
 
-        # Send the email
-        server.sendmail(sender_email, receiver_email, msg.as_string())
+    # Send the email
+    server.sendmail(sender_email, receiver_email, msg.as_string())
 
-        # Close the SMTP connection
-        server.quit()
+    # Close the SMTP connection
+    server.quit()
 
-        print("Email sent successfully!")
-    except Exception as e:
-        print("Failed to send email. Error:", str(e))
+    print("Email sent successfully!")
+    # except Exception as e:
+    #     print("Failed to send email. Error:", str(e))
 
 # Creating all the parameters
 sender_email = "web2app@appcollection.in"
