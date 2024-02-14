@@ -40,6 +40,7 @@ message.attach(part2)
 
 # Connect to SMTP server using SSL
 with smtplib.SMTP_SSL(smtp_host, smtp_port) as server:
+    server.connect(smtp_host, smtp_port)
     server.login(email_username, email_password)
     server.sendmail(sender_email, recipient_email, message.as_string())
 
