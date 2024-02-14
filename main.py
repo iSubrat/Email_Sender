@@ -11,7 +11,7 @@ email_password = os.environ['EMAIL_PASSWORD']
 
 # Sender and recipient email addresses
 sender_email = email_username
-recipient_email = 'isubrat@icloud.com'
+recipient_email = 'recipient@example.com'
 
 # Create message
 message = MIMEMultipart("alternative")
@@ -38,10 +38,14 @@ part2 = MIMEText(html, "html")
 message.attach(part1)
 message.attach(part2)
 
-# Connect to SMTP server and send email
-with smtplib.SMTP(smtp_host, smtp_port) as server:
-    server.starttls()  # Enable TLS encryption
-    server.login(email_username, email_password)
-    server.sendmail(sender_email, recipient_email, message.as_string())
+# Connect to SMTP server
+server = smtplib.SMTP(smtp_host, smtp_port)
+server.ehlo()  # Identify yourself to the SMTP server
+server.starttls()  # Enable TLS encryption
+server.login(email_username, email_password)
+
+# Send email
+server.sendmail(sender_email, recipient_email, message.as_string())
+server.quit()
 
 print("Email sent successfully!")
