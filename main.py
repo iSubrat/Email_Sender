@@ -13,7 +13,7 @@ def send_email(sender_email, sender_password, recipient_email, subject, message)
     try:
         # Setup the email message
         email_message = MIMEMultipart()
-        email_message['From'] = sender_email
+        email_message['From'] = 'subrat@google.com'
         email_message['To'] = recipient_email
         email_message['Subject'] = subject
 
