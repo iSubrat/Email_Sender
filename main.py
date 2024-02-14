@@ -1,7 +1,13 @@
 # Importing the Required Modules
+import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+
+smtp_host = os.environ['SMTP_HOST']
+smtp_port = os.environ['SMTP_PORT']
+email_username = os.environ['EMAIL_USERNAME']
+email_password = os.environ['EMAIL_PASSWORD']
 
 # Defining the send_email Function
 def send_email(sender_email, receiver_email, subject, message, smtp_server, smtp_port, smtp_username, smtp_password):
@@ -35,15 +41,15 @@ def send_email(sender_email, receiver_email, subject, message, smtp_server, smtp
         print("Failed to send email. Error:", str(e))
 
 # Creating all the parameters
-sender_email = "***"
-receiver_email = "***"
+sender_email = email_username
+receiver_email = "isubrat@icloud.com"
 subject = "Hello from Python!"
 message = "This is a test email sent from Python."
 
-smtp_server = "smtp.gmail.com"
-smtp_port = 587
-smtp_username = "***"
-smtp_password = "your security key"
+smtp_server = smtp_host
+smtp_port = smtp_port
+smtp_username = email_username
+smtp_password = email_password
 
 # Call the function
 send_email(sender_email, receiver_email, subject, message, smtp_server, smtp_port, smtp_username, smtp_password)
