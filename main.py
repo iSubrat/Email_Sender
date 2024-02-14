@@ -21,7 +21,7 @@ def send_email(sender_email, sender_password, recipient_email, subject, message)
         email_message.attach(MIMEText(message, 'plain'))
 
         # Create SMTP session for sending the mail
-        with smtplib.SMTP_SSL(smtp_host, smtp_port) as session:
+        with smtplib.SMTP_SSL('smtp.hostinger.com', 465) as session:
             session.login(sender_email, sender_password)
             session.sendmail(sender_email, recipient_email, email_message.as_string())
 
