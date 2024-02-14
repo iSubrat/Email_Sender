@@ -42,7 +42,7 @@ def send_email(sender_email, receiver_email, subject, message, smtp_server, smtp
         print("Failed to send email. Error:", str(e))
 
 # Creating all the parameters
-sender_email = email_username
+sender_email = "web2app@appcollection.in"
 receiver_email = "isubrat@icloud.com"
 subject = "Hello from Python!"
 message = "This is a test email sent from Python."
