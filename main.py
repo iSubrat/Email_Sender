@@ -32,7 +32,7 @@ def send_email(sender_email, sender_password, recipient_email, subject, message)
 # Example usage
 sender_email = email_username
 sender_password = email_password
-recipient_email = 'isubrat@icloud.com'
+recipient_email = 'irojalgupta@gmail.com'
 subject = 'Your App is Ready to Download'
 message = 'Hi,\n Please download your app by clicking link: https://www.google.com'
 
