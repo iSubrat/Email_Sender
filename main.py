@@ -3,7 +3,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-# Retrieve secrets from GitHub Secrets
+# Retrieve secrets from GitHub Secrets check
 smtp_host = os.environ['SMTP_HOST']
 smtp_port = os.environ['SMTP_PORT']
 email_username = os.environ['EMAIL_USERNAME']
