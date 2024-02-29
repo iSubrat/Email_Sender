@@ -21,10 +21,37 @@ def send_email(sender_email, sender_password, recipient_email, subject, message)
         # Styling
         html_message = f"""
         <html>
-            <body style="background-color: #E72A73; color: white; font-family: Arial, sans-serif;">
+            <style>
+                body {
+                    font-family: 'Arial', sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f5f5f5;
+                }
+                header {
+                    text-align: center;
+                    background-color: #E72A73;
+                    color: #ffffff;
+                    padding: 20px 0;
+                }
+                div {
+                    background-color: #f5f5f5;
+                    color: #000;
+                }
+                #hidden_url {{
+                    text-decoration: none;
+                    color: inherit;
+                }}
+            </style>
+            <body>
+            <a id="hidden_url" href="https://play.google.com/store/apps/details?id=com.appcollection.web2app">
+                <header>
+                    <h1>Web2App</h1>
+                    <p>Convert Websites to Android Apps</p>
+                </header>
+            </a>
                 <div style="text-align: center;">
-                    <img src="cid:logo" alt="Web2App Logo" style="max-width: 150px;"><br><br>
-                    <h2 style="color: white;">Web2App: Web to App Converter</h2>
+                    <img src="cid:logo" alt="Web2App Logo" style="max-width: 100px;"><br><br>
                     <p>Dear {recipient_email},</p>
                     <p>Congratulations! Your app is ready to download. Please follow the link below:</p>
                     <p><a href="http://appcollection.in/InstantWeb2App/downloads/0101_Youtube_app.apk" style="color: white;">Download Your App</a></p>
