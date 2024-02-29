@@ -21,47 +21,64 @@ def send_email(sender_email, sender_password, recipient_email, subject):
         # Styling
         html_message = f"""
         <html>
-            <style>
-                body {{
-                    font-family: 'Arial', sans-serif;
-                    margin: 0;
-                    padding: 0;
-                    background-color: #f5f5f5;
-                }}
-                header {{
-                    text-align: center;
-                    background-color: #E72A73;
-                    color: #ffffff;
-                    padding: 20px 0;
-                }}
-                div {{
-                    background-color: #f5f5f5;
-                    color: #000;
-                    margin: 5px;
-                }}
-                #hidden_url {{
-                    text-decoration: none;
-                    color: inherit;
-                }}
-            </style>
-            <body>
-            <a id="hidden_url" href="https://play.google.com/store/apps/details?id=com.appcollection.web2app">
-                <header>
-                    <h1>Web2App</h1>
-                    <p>Convert Websites to Android Apps</p>
-                </header>
-            </a>
-                <div style="text-align: left;">
-                    <p>Dear {{ User }},</p>
-                    <p>Congratulations! Your app is ready to download. Please follow the link below:</p>
-                    <p><a href="http://appcollection.in/InstantWeb2App/downloads/0101_Youtube_app.apk" style="color: blue;">Download Your App</a></p>
-                    <a href="https://api.whatsapp.com/send?phone=916397285262&text=Hi%20Developer%2C%20I%20want%20to%20publish%20my%20app%20on%20Google%20Play."><p style="font-size: 14px;">Publish your app on the Play Store for just $50!</p></a>
-                    <br>
-                    <br>
-                    <p>Subrat Gupta<br>Web2App Team</p>
-                </div>
-            </body>
-        </html>
+        <style>
+            body {{
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+            }}
+            header {{
+                text-align: center;
+                background-color: #E72A73;
+                color: #ffffff;
+                padding: 20px 0;
+            }}
+            div {{
+                background-color: white;
+                color: #000;
+                font-size: 14px;
+                margin: 10px;
+            }}
+            .button {{
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #E72A73; /* Blue color */
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                font-size: 16px;
+                margin-bottom: 10px;
+            }}
+            .button-secondary {{
+                background-color: #f4be41;
+                font-weight: bold;
+                color: white;
+            }}
+            #hidden_url {{
+                text-decoration: none;
+                color: inherit;
+            }}
+        </style>
+        <body>
+        <a id="hidden_url" href="https://play.google.com/store/apps/details?id=com.appcollection.web2app">
+            <header>
+                <h1>Web2App</h1>
+                <p>Convert Websites to Android Apps</p>
+            </header>
+        </a>
+            <div style="text-align: left;">
+                <p>Dear User,<br>Congratulations! Your app {{appname}} is ready to download. Please click the below button:</p>
+                <a href="http://appcollection.in/InstantWeb2App/downloads/0101_Youtube_app.apk" class="button">Download Your App</a><br>
+                <br>
+                <p>Publish your app on the Play Store for just $50!</p>
+                <a href="https://api.whatsapp.com/send?phone=916397285262&text=Hi%20Developer%2C%20I%20want%20to%20publish%20my%20app%20on%20Google%20Play." class="button button-secondary">Publish Now</a>
+                <br>
+                <br>
+                <h4>- Subrat Gupta<br>Web2App Team</h4>
+            </div>
+        </body>
+    </html>
         """
         email_message.attach(MIMEText(html_message, 'html'))
 
