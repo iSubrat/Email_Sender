@@ -22,22 +22,22 @@ def send_email(sender_email, sender_password, recipient_email, subject, message)
         html_message = f"""
         <html>
             <style>
-                body {
+                body {{
                     font-family: 'Arial', sans-serif;
                     margin: 0;
                     padding: 0;
                     background-color: #f5f5f5;
-                }
-                header {
+                }}
+                header {{
                     text-align: center;
                     background-color: #E72A73;
                     color: #ffffff;
                     padding: 20px 0;
-                }
-                div {
+                }}
+                div {{
                     background-color: #f5f5f5;
                     color: #000;
-                }
+                }}
                 #hidden_url {{
                     text-decoration: none;
                     color: inherit;
