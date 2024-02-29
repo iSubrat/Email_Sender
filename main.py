@@ -2,8 +2,9 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.image import MIMEImage  # Add this import for handling images
 
-# Retrieve secrets from GitHub Secrets check
+# Retrieve secrets from GitHub Secrets
 smtp_host = os.environ['SMTP_HOST']
 smtp_port = os.environ['SMTP_PORT']
 email_username = os.environ['EMAIL_USERNAME']
