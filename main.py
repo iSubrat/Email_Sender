@@ -10,7 +10,7 @@ smtp_port = os.environ['SMTP_PORT']
 email_username = os.environ['EMAIL_USERNAME']
 email_password = os.environ['EMAIL_PASSWORD']
 
-def send_email(sender_email, sender_password, recipient_email, subject, message):
+def send_email(sender_email, sender_password, recipient_email, subject):
     try:
         # Setup the email message
         email_message = MIMEMultipart()
@@ -37,6 +37,7 @@ def send_email(sender_email, sender_password, recipient_email, subject, message)
                 div {{
                     background-color: #f5f5f5;
                     color: #000;
+                    margin: 5px;
                 }}
                 #hidden_url {{
                     text-decoration: none;
@@ -64,12 +65,12 @@ def send_email(sender_email, sender_password, recipient_email, subject, message)
         """
         email_message.attach(MIMEText(html_message, 'html'))
 
-        # Attach the logo
-        with open('logo.png', 'rb') as logo:
-            logo_content = logo.read()
-            logo_part = MIMEImage(logo_content)
-            logo_part.add_header('Content-ID', '<logo>')
-            email_message.attach(logo_part)
+        # # Attach the logo
+        # with open('logo.png', 'rb') as logo:
+        #     logo_content = logo.read()
+        #     logo_part = MIMEImage(logo_content)
+        #     logo_part.add_header('Content-ID', '<logo>')
+        #     email_message.attach(logo_part)
 
         # Create SMTP session for sending the mail
         with smtplib.SMTP_SSL(smtp_host, smtp_port) as session:
@@ -85,6 +86,5 @@ sender_email = email_username
 sender_password = email_password
 recipient_email = 'isubrat@icloud.com'
 subject = 'Your App is Ready to Download'
-message = 'Hi,\n Please download your app by clicking link: http://appcollection.in/InstantWeb2App/downloads/0101_Youtube_app.apk'
 
-send_email(sender_email, sender_password, recipient_email, subject, message)
+send_email(sender_email, sender_password, recipient_email, subject)
