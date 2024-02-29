@@ -50,15 +50,14 @@ def send_email(sender_email, sender_password, recipient_email, subject, message)
                     <p>Convert Websites to Android Apps</p>
                 </header>
             </a>
-                <div style="text-align: center;">
-                    <img src="cid:logo" alt="Web2App Logo" style="max-width: 100px;"><br><br>
-                    <p>Dear {recipient_email},</p>
+                <div style="text-align: left;">
+                    <p>Dear {{ User }},</p>
                     <p>Congratulations! Your app is ready to download. Please follow the link below:</p>
-                    <p><a href="http://appcollection.in/InstantWeb2App/downloads/0101_Youtube_app.apk" style="color: white;">Download Your App</a></p>
-                    <p>Username: {{ username }}</p>
-                    <p>App Name: {{ appname }}</p>
-                    <p>Sender: Subrat Gupta - Web2App Team</p>
-                    <p style="font-size: 14px;">Publish your app on the Play Store for just $50!</p>
+                    <p><a href="http://appcollection.in/InstantWeb2App/downloads/0101_Youtube_app.apk" style="color: blue;">Download Your App</a></p>
+                    <a href="https://api.whatsapp.com/send?phone=916397285262&text=Hi%20Developer%2C%20I%20want%20to%20publish%20my%20app%20on%20Google%20Play."><p style="font-size: 14px;">Publish your app on the Play Store for just $50!</p></a>
+                    <br>
+                    <br>
+                    <p>Subrat Gupta<br>Web2App Team</p>
                 </div>
             </body>
         </html>
